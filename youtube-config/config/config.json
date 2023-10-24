@@ -1,0 +1,198 @@
+{
+  "apiCredentials": [
+    {
+      "oisTitle": "LineaYoutube",
+      "securitySchemeName": "LineaYoutubeSecurityScheme1ApiKey",
+      "securitySchemeValue": "${LINEAYOUTUBE_SECURITY_SCHEME_1_API_KEY_VALUE}"
+    }
+  ],
+  "chains": [
+    {
+      "authorizations": {
+        "requesterEndpointAuthorizations": {}
+      },
+      "authorizers": {
+        "crossChainRequesterAuthorizers": [],
+        "crossChainRequesterAuthorizersWithErc721": [],
+        "requesterAuthorizersWithErc721": [],
+        "requesterEndpointAuthorizers": []
+      },
+      "blockHistoryLimit": 300,
+      "contracts": {
+        "AirnodeRrp": "0xa0AD79D995DdeeB18a14eAef56A549A04e3Aa1Bd"
+      },
+      "id": "59140",
+      "maxConcurrency": 50,
+      "minConfirmations": 0,
+      "options": {
+        "fulfillmentGasLimit": 500000,
+        "gasPriceOracle": [
+          {
+            "gasPriceStrategy": "providerRecommendedGasPrice",
+            "recommendedGasPriceMultiplier": 1.2
+          },
+          {
+            "gasPrice": {
+              "unit": "gwei",
+              "value": 10
+            },
+            "gasPriceStrategy": "constantGasPrice"
+          }
+        ],
+        "withdrawalRemainder": {
+          "unit": "wei",
+          "value": 0
+        }
+      },
+      "providers": {
+        "lineaGoerliPublic": {
+          "url": "https://rpc.goerli.linea.build"
+        },
+        "lineaGoerliTestnet1": {
+          "url": "${LINEA_GOERLI_TESTNET_1_PROVIDER_URL}"
+        }
+      },
+      "type": "evm"
+    }
+  ],
+  "nodeSettings": {
+    "airnodeWalletMnemonic": "${AIRNODE_WALLET_MNEMONIC}",
+    "cloudProvider": {
+      "disableConcurrencyReservations": true,
+      "region": "us-east-1",
+      "type": "aws"
+    },
+    "heartbeat": {
+      "apiKey": "${HEARTBEAT_API_KEY}",
+      "enabled": true,
+      "url": "${HEARTBEAT_URL}"
+    },
+    "httpGateway": {
+      "corsOrigins": [],
+      "enabled": true,
+      "maxConcurrency": 20
+    },
+    "httpSignedDataGateway": {
+      "corsOrigins": [],
+      "enabled": true,
+      "maxConcurrency": 20
+    },
+    "logFormat": "plain",
+    "logLevel": "INFO",
+    "nodeVersion": "0.12.0",
+    "oevGateway": {
+      "corsOrigins": [],
+      "enabled": true,
+      "maxConcurrency": 20
+    },
+    "stage": "lineayoutube"
+  },
+  "ois": [
+    {
+      "apiSpecifications": {
+        "components": {
+          "securitySchemes": {
+            "LineaYoutubeSecurityScheme1ApiKey": {
+              "in": "query",
+              "name": "key",
+              "type": "apiKey"
+            }
+          }
+        },
+        "paths": {
+          "/videos": {
+            "get": {
+              "parameters": [
+                {
+                  "in": "query",
+                  "name": "part"
+                },
+                {
+                  "in": "query",
+                  "name": "id"
+                }
+              ]
+            }
+          }
+        },
+        "security": {
+          "LineaYoutubeSecurityScheme1ApiKey": []
+        },
+        "servers": [
+          {
+            "url": "https://www.googleapis.com/youtube/v3"
+          }
+        ]
+      },
+      "endpoints": [
+        {
+          "fixedOperationParameters": [],
+          "name": "videos",
+          "operation": {
+            "method": "get",
+            "path": "/videos"
+          },
+          "parameters": [
+            {
+              "name": "part",
+              "operationParameter": {
+                "in": "query",
+                "name": "part"
+              },
+              "required": false
+            },
+            {
+              "name": "id",
+              "operationParameter": {
+                "in": "query",
+                "name": "id"
+              },
+              "required": false
+            }
+          ],
+          "postProcessingSpecifications": [],
+          "preProcessingSpecifications": [],
+          "reservedParameters": [
+            {
+              "name": "_type"
+            },
+            {
+              "name": "_path"
+            },
+            {
+              "name": "_times"
+            }
+          ]
+        }
+      ],
+      "oisFormat": "2.1.0",
+      "title": "LineaYoutube",
+      "version": "0.1.0"
+    }
+  ],
+  "templates": [],
+  "triggers": {
+    "http": [
+      {
+        "endpointId": "0xeae756d74ea6a2c2af06dd5aa1d89403c9bbc07bb114d96f607939a7008bd163",
+        "endpointName": "videos",
+        "oisTitle": "LineaYoutube"
+      }
+    ],
+    "httpSignedData": [
+      {
+        "endpointId": "0xeae756d74ea6a2c2af06dd5aa1d89403c9bbc07bb114d96f607939a7008bd163",
+        "endpointName": "videos",
+        "oisTitle": "LineaYoutube"
+      }
+    ],
+    "rrp": [
+      {
+        "cacheResponses": false,
+        "endpointId": "0xeae756d74ea6a2c2af06dd5aa1d89403c9bbc07bb114d96f607939a7008bd163",
+        "endpointName": "videos",
+        "oisTitle": "LineaYoutube"
+      }
+    ]
+  }
+}
